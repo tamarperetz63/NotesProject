@@ -6,15 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:minWidth="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        tools:listitem="@layout/notes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
         android:id="@+id/welcomeButtonId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to my app"
+        android:text="Add note"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
