@@ -21,11 +21,9 @@ class MainActivity : AppCompatActivity() {
 		val addNoteButtonId = findViewById<Button>(R.id.welcomeButtonId)
 		val notesCards = findViewById<View>(R.id.recyclerView) as RecyclerView
 
+		adapter.notesList = Session.notesList
 		notesCards.adapter = adapter
 		notesCards.layoutManager = LinearLayoutManager(this)
-
-		adapter.notesList
-
 
 		addNoteButtonId.setOnClickListener {
 			val i = Intent(this@MainActivity, SecondeActivity::class.java)
@@ -33,4 +31,10 @@ class MainActivity : AppCompatActivity() {
 		}
 
 	}
+//first fragment
+//	override fun onResume() {
+//		super.onResume()
+//		adapter.notesList = Session.notesList
+//		adapter.notifyDataSetChanged()
+//	}
 }

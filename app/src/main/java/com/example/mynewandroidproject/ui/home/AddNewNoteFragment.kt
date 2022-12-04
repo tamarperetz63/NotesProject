@@ -9,10 +9,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import com.example.mynewandroidproject.AdapterNotes
 import com.example.mynewandroidproject.MainActivity
 import com.example.mynewandroidproject.NoteData
 import com.example.mynewandroidproject.R
+import com.example.mynewandroidproject.Session
 import com.example.mynewandroidproject.databinding.FragmentHomeBinding
 
 class AddNewNoteFragment : Fragment() {
@@ -36,14 +36,11 @@ class AddNewNoteFragment : Fragment() {
 
 		saveButton.setOnClickListener {
 			val userInput = textEdit.text
-			val userNewNote = listOf<NoteData>(
-				NoteData(
-					content = userInput,
-					date = "111"
-				)
-			)
-			val adapter = AdapterNotes()
-			adapter.notesList = userNewNote
+
+			Session.notesList.add(NoteData(
+				content = userInput,
+				date = "111"
+			))
 			val i = Intent(context, MainActivity::class.java)
 			startActivity(i)
 
