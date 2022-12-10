@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mynewandroidproject.MainActivity
 import com.example.mynewandroidproject.NoteData
 import com.example.mynewandroidproject.R
@@ -41,9 +42,7 @@ class AddNewNoteFragment : Fragment() {
 				content = userInput,
 				date = "111"
 			))
-			val i = Intent(context, MainActivity::class.java)
-			startActivity(i)
-
+			findNavController().popBackStack()
 		}
 	}
 }
