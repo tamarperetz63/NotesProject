@@ -5,7 +5,7 @@ import com.example.mynewandroidproject.domain.NoteDataRepository
 import com.example.tictactoe.DataBase.NotesData
 import com.example.tictactoe.DataBase.getInstanceDB
 
-open class NotesRepository : NoteDataRepository {
+class NotesRepository : NoteDataRepository {
 
 	override suspend fun insertNotes(context: Context, content: String, date: String) {
 		getInstanceDB.getInstance(context).getNotesDao().insertAll(
@@ -15,7 +15,6 @@ open class NotesRepository : NoteDataRepository {
 			)
 		)
 	}
-
 	override fun getNotesList(context: Context) {
 		getInstanceDB.getInstance(context).getNotesDao()
 	}

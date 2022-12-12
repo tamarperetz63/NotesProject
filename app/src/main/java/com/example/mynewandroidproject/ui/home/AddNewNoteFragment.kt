@@ -1,6 +1,6 @@
 package com.example.mynewandroidproject.ui.home
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +9,18 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.mynewandroidproject.AdapterNotes
 import com.example.mynewandroidproject.MainActivity
 import com.example.mynewandroidproject.NoteData
 import com.example.mynewandroidproject.R
-import com.example.mynewandroidproject.Session
-import com.example.mynewandroidproject.databinding.FragmentHomeBinding
+import com.example.mynewandroidproject.viewModel.ViewModelNotes
 
 class AddNewNoteFragment : Fragment() {
 
-	private var _binding: FragmentHomeBinding? = null
 	var listOfNote: MutableList<NoteData> = mutableListOf()
+	val viewModelNotes: ViewModelNotes by activityViewModels()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -36,16 +37,13 @@ class AddNewNoteFragment : Fragment() {
 
 
 		saveButton.setOnClickListener {
-			val userInput = textEdit.text
-
-			Session.notesList.add(NoteData(
-				content = userInput,
-				date = "111"
-			))
+			val userInput = textEdit.text.toString()
+			viewModelNotes.onSaveClicked(userInput,requireContext())
 			findNavController().popBackStack()
 		}
 	}
 }
+
 
 
 

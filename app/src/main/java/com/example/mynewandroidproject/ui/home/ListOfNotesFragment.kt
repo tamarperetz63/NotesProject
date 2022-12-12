@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,11 +15,14 @@ import com.example.mynewandroidproject.AdapterNotes
 import com.example.mynewandroidproject.NoteData
 import com.example.mynewandroidproject.R
 import com.example.mynewandroidproject.Session
+import com.example.mynewandroidproject.viewModel.ViewModelNotes
+import com.example.tictactoe.DataBase.NotesData
 
 
 class ListOfNotesFragment : Fragment() {
 	lateinit var listOfNotes: MutableList<NoteData>
 	val adapter = AdapterNotes()
+	val viewModelNotes: ViewModelNotes by activityViewModels()
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +50,21 @@ class ListOfNotesFragment : Fragment() {
 		addNoteButtonId.setOnClickListener {
 			findNavController().navigate(R.id.action_navigation_dashboard_to_navigation_home)
 		}
+		viewModelNotes.notesList(requireContext()).observe(viewLifecycleOwner) { noteData: List<NotesData>? ->
+			var noteList: MutableList<NoteData> = mutableListOf()
+			if (noteData == null) {
+				return@observe
+			}
 
+			for (note in noteData) {
+				noteList.add(
+					NoteData(
+						note.noteContent, note.noteDate
+					)
+				)
+			}
+			adapter.notesList = noteList
+		}
 
 	}
 
