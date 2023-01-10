@@ -17,13 +17,14 @@ import com.example.mynewandroidproject.R
 import com.example.mynewandroidproject.Session
 import com.example.mynewandroidproject.viewModel.ViewModelNotes
 import com.example.tictactoe.DataBase.NotesData
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
-class ListOfNotesFragment : Fragment() {
+class ListOfNotesFragment : Fragment(), KoinComponent {
 	lateinit var listOfNotes: MutableList<NoteData>
 	val adapter = AdapterNotes()
-	val viewModelNotes: ViewModelNotes by activityViewModels()
-
+	private val viewModelNotes: ViewModelNotes by inject()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -50,7 +51,7 @@ class ListOfNotesFragment : Fragment() {
 		addNoteButtonId.setOnClickListener {
 			findNavController().navigate(R.id.action_navigation_dashboard_to_navigation_home)
 		}
-		viewModelNotes.notesList(requireContext()).observe(viewLifecycleOwner) { noteData: List<NotesData>? ->
+		viewModelNotes.notesList().observe(viewLifecycleOwner) { noteData: List<NotesData>? ->
 			var noteList: MutableList<NoteData> = mutableListOf()
 			if (noteData == null) {
 				return@observe

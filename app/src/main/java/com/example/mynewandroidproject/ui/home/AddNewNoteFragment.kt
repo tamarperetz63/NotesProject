@@ -1,6 +1,5 @@
 package com.example.mynewandroidproject.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,17 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.mynewandroidproject.AdapterNotes
-import com.example.mynewandroidproject.MainActivity
 import com.example.mynewandroidproject.NoteData
 import com.example.mynewandroidproject.R
 import com.example.mynewandroidproject.viewModel.ViewModelNotes
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class AddNewNoteFragment : Fragment() {
+class AddNewNoteFragment : Fragment(),KoinComponent {
 
 	var listOfNote: MutableList<NoteData> = mutableListOf()
-	val viewModelNotes: ViewModelNotes by activityViewModels()
+	private val viewModelNotes: ViewModelNotes by viewModel()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,7 @@ class AddNewNoteFragment : Fragment() {
 
 		saveButton.setOnClickListener {
 			val userInput = textEdit.text.toString()
-			viewModelNotes.onSaveClicked(userInput,requireContext())
+			viewModelNotes.onSaveClicked(userInput)
 			findNavController().popBackStack()
 		}
 	}
