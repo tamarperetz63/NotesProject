@@ -18,6 +18,6 @@ val appModule = module {
 	}
 
 	viewModel {
-		ViewModelNotes(dao = get())
+		ViewModelNotes(repo = get())
 	}
 }

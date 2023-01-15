@@ -17,6 +17,7 @@ import com.example.mynewandroidproject.R
 import com.example.mynewandroidproject.Session
 import com.example.mynewandroidproject.viewModel.ViewModelNotes
 import com.example.tictactoe.DataBase.NotesData
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -24,7 +25,7 @@ import org.koin.core.component.inject
 class ListOfNotesFragment : Fragment(), KoinComponent {
 	lateinit var listOfNotes: MutableList<NoteData>
 	val adapter = AdapterNotes()
-	private val viewModelNotes: ViewModelNotes by inject()
+	private val viewModelNotes: ViewModelNotes by viewModel()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

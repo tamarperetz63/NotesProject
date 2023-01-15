@@ -9,5 +9,7 @@ interface NoteDataRepository {
 	suspend fun insertNotes(content: String, date: String)
 
 	fun getNotesList() : LiveData<List<NotesData>>
+
+	fun getNoteFromRemote()
 }
 
